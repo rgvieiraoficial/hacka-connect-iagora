@@ -32,6 +32,7 @@ const SingUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isloading, setIsLoading] = useState(false);
 
   const [errors, setErrors] = useState<FieldErrorMap | null>(null);
 
@@ -64,8 +65,8 @@ const SingUp = () => {
   };
 
   return (
-    <div className="display flex flex-col items-center justify-center min-h-screen ">
-      <div className="flex flex-col justify-center gap-4 px-6 py-4 border border-gray-300 rounded-2xl min-h-96 min-w-[650px] bg-white">
+    <div className="display flex flex-col items-center justify-center min-h-screen px-4">
+      <div className="flex flex-col justify-center gap-4 px-6 py-4 border border-gray-300 rounded-2xl min-h-96 w-full max-w-[650px] bg-white">
 
         <div className="flex flex-col justify-center gap-4 mt-8">
           <Image
@@ -79,7 +80,7 @@ const SingUp = () => {
             Crie sua conta gratuitamente
           </h1>
 
-          <div className="w-11/12 ">
+          <div className="w-full">
             <p className="text-sm text-gray-600">
               Comece a gerenciar suas finanças hoje mesmo! Tenha controle total e segurança para suas operações.
             </p>
@@ -95,7 +96,7 @@ const SingUp = () => {
           />
 
           {errors?.email && (
-            <p className="text-red-500 text-sm  ml-1">{errors.email[0]}</p>
+            <p className="text-red-500 text-sm ml-1">{errors.email[0]}</p>
           )}
 
           <Input
@@ -114,7 +115,7 @@ const SingUp = () => {
           <Input
             variant="primary"
             type="password"
-            placeholder="Digita a Senha novamente"
+            placeholder="Digite a senha novamente"
             value={confirmPassword}
             onChange={(e) => { setConfirmPassword(e.target.value); setErrors(null) }}
             className={errors?.confirmPassword ? "border-red-500" : ""}
@@ -130,12 +131,10 @@ const SingUp = () => {
             variant="primary"
             onClick={handleSignUp}
           >
-            Criar minha conta grátis
+            {isloading ? "Cadastrando..." : "Criar Conta"}
           </Button>
 
-          <Link
-            href={"/sign-in"}
-          >
+          <Link href={"/sign-in"}>
             <Button
               variant="secondary"
               className="w-full border-0 font-semibold text-gray-600 hover:text-black"
@@ -146,16 +145,20 @@ const SingUp = () => {
 
           <div className="mt-4">
             <p className="text-sm text-gray-600">
-              Ao criar uma conta, você concorda com nossos <Link href="/terms" className="underline">
+              Ao criar uma conta, você concorda com nossos{" "}
+              <Link href="/terms" className="underline">
                 <strong>Termos de Serviço</strong>
-              </Link> e <Link href="/privacy" className="underline">
+              </Link>{" "}
+              e{" "}
+              <Link href="/privacy" className="underline">
                 <strong>Política de Privacidade.</strong>
               </Link>
             </p>
           </div>
         </div>
       </div>
-    </div >
+    </div>
+
   );
 };
 

@@ -55,8 +55,8 @@ const SingIn = () => {
   };
 
   return (
-    <div className="display flex flex-col items-center justify-center min-h-screen ">
-      <div className="flex flex-col justify-center gap-4 px-8 py-4 border border-gray-300 rounded-2xl min-h-96 min-w-[650px] bg-white">
+    <div className="display flex flex-col items-center justify-center min-h-screen px-4">
+      <div className="flex flex-col justify-center gap-4 px-8 py-4 border border-gray-300 rounded-2xl min-h-96 w-full max-w-[650px] bg-white">
 
         <div className="flex flex-col justify-center gap-4 mt-8">
           <Image
@@ -79,9 +79,8 @@ const SingIn = () => {
           />
 
           {errors?.email && (
-            <p className="text-red-500 text-sm  ml-1">{errors.email[0]}</p>
+            <p className="text-red-500 text-sm ml-1">{errors.email[0]}</p>
           )}
-
 
           <Input
             variant="primary"
@@ -92,9 +91,8 @@ const SingIn = () => {
           />
 
           {errors?.password && (
-            <p className="text-red-500 text-sm  ml-1">{errors.password[0]}</p>
+            <p className="text-red-500 text-sm ml-1">{errors.password[0]}</p>
           )}
-
         </div>
 
         <div className="flex flex-col justify-center gap-2 mb-6">
@@ -120,11 +118,12 @@ const SingIn = () => {
             href={"/sign-up"}
             className="text-center text-sm underline mt-4 text-gray-600 hover:text-black"
           >
-            Não tem um conta? cadastre-se gratuitamente
+            Não tem uma conta? cadastre-se gratuitamente
           </Link>
         </div>
       </div>
-    </div >
+    </div>
+
   );
 };
 
