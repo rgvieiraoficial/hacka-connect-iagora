@@ -23,7 +23,7 @@ export async function login({
 
   if (error) {
     console.log(error.message);
-    redirect("/error");
+    return error;
   }
 
   revalidatePath("/dashboard", "layout");

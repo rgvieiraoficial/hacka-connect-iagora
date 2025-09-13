@@ -6,9 +6,9 @@ import { z } from "zod";
 
 import { login } from "@/app/login/actions";
 
+import { useToast } from '@/contexts/toast-context/hooks';
 import { Input } from "@/compnents/core/input";
 import { Button } from "@/compnents/core/button";
-
 const signInSchema = z.object({
   email: z.email("Email inválido"),
   password: z.string().min(6, "A senha precisa ter pelo menos 6 caracteres"),
@@ -20,14 +20,17 @@ type FieldErrorMap = {
 };
 
 const SingIn = () => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isloading, setIsLoading] = useState(false);
 
   const [errors, setErrors] = useState<FieldErrorMap | null>(null);
 
+  const showToast = useToast();
+
   const handleSignIn = async () => {
     const result = signInSchema.safeParse({ email, password });
+    setIsLoading(true);
 
     if (!result.success) {
       const tree = z.treeifyError(result.error);
@@ -39,10 +42,16 @@ const SingIn = () => {
 
       setErrors(fieldErrors);
 
+      setIsLoading(false);
+
       return;
     }
 
-    await login({ email, password });
+    const error = await login({ email, password });
+
+    if (error) showToast('Email ou Senha inválidos!', 'error');
+
+    setIsLoading(false);
   };
 
   return (
@@ -93,7 +102,7 @@ const SingIn = () => {
             variant="primary"
             onClick={handleSignIn}
           >
-            Entrar
+            {isloading ? "Entrando..." : "Entrar"}
           </Button>
 
           <Link
