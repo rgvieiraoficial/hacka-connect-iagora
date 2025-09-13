@@ -40,6 +40,7 @@ const SingUp = () => {
 
   const handleSignUp = async () => {
     const result = signUpSchema.safeParse({ email, password, confirmPassword });
+    setIsLoading(true);
 
     if (!result.success) {
       const tree = z.treeifyError(result.error);
@@ -51,6 +52,7 @@ const SingUp = () => {
       };
 
       setErrors(fieldErrors);
+      setIsLoading(false);
 
       return;
     }
