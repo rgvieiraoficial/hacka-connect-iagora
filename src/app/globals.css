@@ -1,22 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #eaebed;
   --foreground: #171717;
+
+  /* Paleta base */
+  --secondary: #ffffff;
+  --action: #055e47;
+  --cancel: #e4763c;
+  --dark-grey: #303030;
+  --black-grey: ##9c9ba0;
+  --grey: #eaebed;
+  --light-grey: #e7e7e7;
+  --off-white: #f1f1f1;
+
+  /* Espaçamentos */
+  --gap-xs: 2px;
+  --gap-s: 8px;
+  --gap-m: 12px;
+  --gap-l: 16px;
+  --gap-xl: 24px;
+  --gap-2xl: 32px;
 }
 
 @theme inline {
+  /* Cores semânticas */
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-primary: var(--foreground);
+  --color-secondary: var(--secondary);
+  --color-danger: var(--action);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-gray-dark: var(--black-grey);
+  --color-gray: var(--grey);
+  --color-gray-light: var(--light-grey);
+  --color-surface: var(--off-white);
+
+  /* Espaçamentos padrão */
+  --spacing-xs: var(--gap-xs);
+  --spacing-s: var(--gap-s);
+  --spacing-m: var(--gap-m);
+  --spacing-l: var(--gap-l);
+  --spacing-xl: var(--gap-xl);
+  --spacing-2xl: var(--gap-2xl);
 }
 
 body {
